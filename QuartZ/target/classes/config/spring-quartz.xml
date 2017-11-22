@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="com.zl.job"/>
+
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="name" value="jobDetail"/>
+        <property name="group" value="group1"/>
+        <property name="targetObject" ref="helloJob" />
+        <property name="targetMethod" value="run" />
+    </bean>
+
+    <!--触发器-->
+    <bean id="helloJobTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="name" value="helloJobTrigger" />
+        <property name="group" value="group1" />
+        <property name="jobDetail" ref="jobDetail" />
+        <property name="repeatInterval" value="5000" />
+    </bean>
+<!--Cron表达式-->
+    <bean id="cronjobDateil" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="name" value="cronjobDateil"/>
+        <property name="group" value="group2"/>
+        <property name="targetObject" ref="cronQuartz"/>
+        <property name="targetMethod" value="run"/>
+    </bean>
+
+    <bean id="cronquartzs" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+           <property name="name" value="cronquartzs"/>
+            <property name="group" value="group2"/>
+            <property name="jobDetail" ref="cronjobDateil"/>
+            <property name="cronExpression" value="0 15 15 27 * ? *"/>
+    </bean>
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="jobDetail" />
+                <ref bean="cronjobDateil"/>
+            </list>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref bean="helloJobTrigger" />
+                <ref bean="cronquartzs"/>
+            </list>
+        </property>
+    </bean>
+</beans>
