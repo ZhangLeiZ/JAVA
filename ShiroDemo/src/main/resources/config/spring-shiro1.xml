@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- 缓存器，用于缓存shiro相关的数据 -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+    <bean id="myrealm2" class="com.zl.shiro.MyRealm2"/>
+    <!--设置Cookie-->
+    <bean id="rememberMeCookie"  class="org.apache.shiro.web.servlet.SimpleCookie">
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="2592000"/><!-- 30天 -->
+        <property name="name" value="cookieshiro"/>
+    </bean>
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- 我们自定义的realm -->
+        <property name="realm" ref="myrealm2"/>
+        <!-- 缓存管理器 -->
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+
+    </bean>
+
+    <bean id="sslFileter" class="org.apache.shiro.web.filter.authz.SslFilter">
+        <property name="port" value="8080"/>
+    </bean>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 权限管理器 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 登录地址 -->
+        <property name="loginUrl" value="/WEB-INF/views/login.jsp"/>
+        <!-- 错误页面 -->
+        <property name="unauthorizedUrl" value="/WEB-INF/views/unauth.jsp"/>
+
+        <property name="filters">
+            <util:map>
+                <entry key="ssl" value-ref="sslFileter"/>
+            </util:map>
+        </property>
+
+        <!-- 权限配置 -->
+        <property name="filterChainDefinitions">
+            <value>
+                /login.jsp = ssl,authc
+                /login = anon
+                /css/**=anon
+                /images/**=anon
+                /js/**=anon
+            </value>
+        </property>
+    </bean>
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+</beans>

@@ -1,0 +1,69 @@
+package com.zl.Bean;
+
+/**
+ * Created by Administrator on 2017/10/10.
+ */
+public class zTree {
+    private Integer id; // 权限id
+    private Integer pId; // 模块id
+    private String name; // 权限名称-中文描述名
+    private Boolean open;
+    private Boolean isParent;
+    private Boolean checked;
+
+    public zTree(Integer id,Integer pId,String name,Boolean open,Boolean isParent,Boolean checked){
+        this.id = id;
+        this.pId = pId;
+        this.name = name;
+        this.open = open;
+        this.isParent = isParent;
+        this.checked = checked;
+    }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getpId() {
+        return pId;
+    }
+
+    public void setpId(Integer pId) {
+        this.pId = pId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Boolean getOpen() {
+        return open;
+    }
+
+    public void setOpen(Boolean open) {
+        this.open = open;
+    }
+
+    public Boolean getIsParent() {
+        return isParent;
+    }
+
+    public void setIsParent(Boolean isparent) {
+        isParent = isparent;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
+}

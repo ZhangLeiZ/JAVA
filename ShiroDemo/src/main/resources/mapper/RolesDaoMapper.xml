@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.Dao.RolesDao">
+    <resultMap id="rolesMap" type="role">
+
+    </resultMap>
+
+
+    <select id="RolesList" parameterType="string" resultType="string">
+        select ur.role_name FROM users u , user_roles ur where u.username=ur.username and u.username=#{username}
+    </select>
+    <select id="RolesPageList" resultMap="rolesMap">
+        select * from user_roles;
+    </select>
+</mapper>

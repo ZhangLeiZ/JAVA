@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.Dao.PermissonDao">
+    <resultMap id="permissonMap" type="com.zl.Bean.Permisson">
+
+    </resultMap>
+
+    <select id="permissonList" parameterType="string" resultType="string">
+        select rp.permission from user_roles ur,roles_permissions rp,users u where u.username=ur.username and ur.role_name=rp.role_name and u.username =#{username}
+    </select>
+
+    <select id="permissionPageList" parameterType="int" resultMap="permissonMap">
+        select * from roles_permissions where mid=#{mid}
+    </select>
+
+</mapper>

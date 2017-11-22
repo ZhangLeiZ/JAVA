@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- 缓存器，用于缓存shiro相关的数据 -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+    <!-- 配置数据源-->
+    <bean id="jdbcRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="authenticationQuery" value="select password from users where username = ?"></property>
+        <property name="userRolesQuery" value="select rp.permission from user_roles ur,roles_permissions rp,users u where u.username=ur.username and ur.role_name=rp.role_name and u.username = ?" />
+        <property name="permissionsQuery" value="select ur.role_name FROM users u , user_roles ur where u.username=ur.username and u.username= ?" />
+        <property name="permissionsLookupEnabled" value="true" />
+    </bean>
+    <!--设置Cookie-->
+    <bean id="rememberMeCookie" name="cookieshiro" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="2592000"/><!-- 30天 -->
+    </bean>
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- 我们自定义的realm -->
+        <property name="realm" ref="jdbcRealm"/>
+        <!-- 缓存管理器 -->
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+    </bean>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 权限管理器 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 登录地址 -->
+        <property name="loginUrl" value="/WEB-INF/views/login.jsp"/>
+        <!-- 错误页面 -->
+        <property name="unauthorizedUrl" value="/WEB-INF/views/unauth.jsp"/>
+        <!-- 权限配置 -->
+        <property name="filterChainDefinitions">
+            <value>
+                /login = anon
+                /css/**=anon
+                /images/**=anon
+                /js/**=anon
+            </value>
+        </property>
+    </bean>
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+</beans>
