@@ -1,0 +1,23 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.Building" table="t_building">
+			<id name="building_id" column="building_id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="building_name" length="50" type="string"></property>
+			<property name="total_floor"  length="11" type="int"></property>
+			<property name="total_lift"  length="11" type="int"></property>
+			<property name="floor_rooms" length="11" type="int"></property>
+			<property name="total_room" length="11" type="int"></property>
+			<property name="buildings_id"  type="string"></property>
+			<property name="created_time"  type="string"></property>
+			<property name="building_status" length="2" type="string"></property>
+			
+			<many-to-one name="buildings"  column="buildings_id" class="com.th.bean.Buildings"  lazy="false"
+		insert="false" update="false" not-found="ignore"></many-to-one>
+			
+		</class>
+</hibernate-mapping>

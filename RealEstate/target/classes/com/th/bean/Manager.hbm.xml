@@ -1,0 +1,18 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.Manager" table="t_manager">
+			<id name="manager_id" column="manager_id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="manager_account" length="50" type="string"></property>
+			<property name="manager_password"  length="50" type="string"></property>
+			<property name="manager_name"  length="20" type="string"></property>
+			<property name="manager_sex" length="2" type="string"></property>
+			<property name="manager_phone" length="20" type="string"></property>
+			<property name="manager_status" length="4" type="string"></property>
+			<property name="manager_image" length="50" type="string"></property>
+		</class>
+</hibernate-mapping>

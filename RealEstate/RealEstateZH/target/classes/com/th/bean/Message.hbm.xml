@@ -1,0 +1,22 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.Message" table="t_message">
+			<id name="message_id" column="message_id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="message_content" length="1000" type="string"></property>
+			<property name="reply"  length="1000" type="string"></property>
+			<property name="leave_time"  type="string"></property>
+			<property name="reply_time"  type="string"></property>
+			<property name="message_status" length="2" type="string"></property>
+			
+			<many-to-one name="user" column="user_id" class="com.th.bean.User">
+			</many-to-one>	
+			<many-to-one name="buildings" column="buildings_id" class="com.th.bean.Buildings">
+			</many-to-one>
+
+		</class>
+</hibernate-mapping>

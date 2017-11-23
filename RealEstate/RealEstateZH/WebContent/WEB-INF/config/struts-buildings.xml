@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="buildingsPackage" namespace="/buildings" extends="basePackage">
+    	<action name="*" class="buildingsAction" method="{1}">
+    		<result name="error">/error.jsp</result>
+    		<result name="success" type="json"></result>
+    		<result name="buildList">/WEB-INF/agency/BuildingsList.jsp</result>
+    		<result name="list" type="json"></result>
+    		<result name="findList" type="json"></result>
+    		<result name="details">/WEB-INF/agency/BuildingsDetails.jsp</result>
+    		<result name="find">/WEB-INF/agency/BuildingsFindList.jsp</result>
+    		<result name="xiangqing">/house/BuildingsXiangqing.jsp</result>
+    	</action>
+    </package>
+
+</struts>

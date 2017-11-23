@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="roomPackage" namespace="/room" extends="basePackage">
+    	<action name="*" class="roomAction" method="{1}">
+    		<result name="list" type="json"></result>
+    		<result name="find" type="json"></result>
+    		<result name="findlist" type="json"></result>
+    		<result name="findroom">/WEB-INF/agency/RoomsList.jsp</result>
+    		<result name="roomAdd">/WEB-INF/agency/RoomsAdd.jsp</result>
+    		<result name="find">/WEB-INF/agency/RoomsFindList.jsp</result>
+    		<result name="findCustomer">/WEB-INF/agency/RoomCustomerDetails.jsp</result>
+    		<result name="roomCount">/WEB-INF/agency/RoomCountList.jsp</result>
+    		<result name="roomCount1">/WEB-INF/employee/RoomCountList.jsp</result>
+    	</action>
+    </package>
+
+</struts>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="managerPackage" namespace="/manager" extends="basePackage">
+    	<action name="*" class="managerAction" method="{1}">
+    		   <result name="agency">/WEB-INF/manager/basic_table.jsp</result> 
+    		   <result name="agencys" type="json"></result>  
+    		   <result name="examine">/WEB-INF/manager/form_validation.jsp</result> 
+    		   <result name="manager">/WEB-INF/manager/manager.jsp</result>  
+    		    <result name="manupdate">/WEB-INF/manager/managerupdate.jsp</result> 
+    		   <result name="manpwd">/WEB-INF/manager/managerpwd.jsp</result>  
+    		   <result name="manlogin">/WEB-INF/manager/login.jsp</result>  	
+    		  <result name="employee" type="json"></result>
+    		  <result name="employees">/WEB-INF/manager/responsive_table.jsp</result>
+    		  <result name="empexamine">/WEB-INF/manager/managerexfrom.jsp</result> 
+    		
+    		  <result name="user">/WEB-INF/manager/basic_table.jsp</result>
+    		  <result name="activity" type="json"></result>
+    		  <result name="activitys">/WEB-INF/manager/activitymanager.jsp</result>
+    		   <result name="actexamine">/WEB-INF/manager/glyphicon.jsp</result> 
+    		  <result name="article">/WEB-INF/manager/articleAdd.jsp</result>
+    		  <result name="articlelists">/WEB-INF/manager/articleFrom.jsp</result>
+    		  <result name="articlelist" >/WEB-INF/manager/articleFrom.jsp</result>
+    		  <result name="permission">/WEB-INF/manager/flot_chart.jsp</result>
+    	</action>
+    </package>
+
+</struts>

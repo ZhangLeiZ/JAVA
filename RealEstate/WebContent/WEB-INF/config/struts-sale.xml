@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="salePackage" namespace="/sale" extends="basePackage">
+    	<action name="*" class="saleAction" method="{1}">
+    		<result name="list" type="json"></result>
+    		<result name="saleList">/WEB-INF/agency/SaleList.jsp</result>
+    		<result name="saleCount">/WEB-INF/agency/SaleCountList.jsp</result>
+    		<result name="saleCount1">/WEB-INF/employee/SaleCountList.jsp</result>
+    	</action>
+    </package>
+
+</struts>

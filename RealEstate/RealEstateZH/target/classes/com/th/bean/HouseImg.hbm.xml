@@ -1,0 +1,14 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.HouseImg" table="t_house_img">
+			<id name="id" column="id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="house_img" length="36" type="string"></property>
+			<property name="house_id" length="36"  type="string"></property>
+			
+		</class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.Mission" table="t_misson">
+			<id name="mission_id" column="mission_id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="quantity"  length="11" type="int"></property>
+			<property name="monthes"  length="11" type="int"></property>
+			<property name="employee_id" length="36" type="string"></property>
+			<property name="bonus_percent"  type="double"></property>
+			
+		<many-to-one name="employee"  column="employee_id" class="com.th.bean.Employee"  
+		insert="false" update="false"></many-to-one>
+			
+		</class>
+</hibernate-mapping>

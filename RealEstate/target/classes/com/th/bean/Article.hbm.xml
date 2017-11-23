@@ -1,0 +1,18 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.Article" table="t_article">
+			<id name="article_id" column="article_id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="article_title" length="36" type="string"></property>
+			<property name="article_abstracts"  length="100" type="string"></property>
+			<property name="article_content"  length="1000" type="string"></property>
+			<property name="article_logo" length="500" type="string"></property>
+			<property name="created_time"  type="string"></property>
+			<property name="article_status" length="2" type="string"></property>
+			<property name="contentUrl" length="100" type="string"></property>
+		</class>
+</hibernate-mapping>

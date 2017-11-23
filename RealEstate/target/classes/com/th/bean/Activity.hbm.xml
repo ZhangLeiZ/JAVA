@@ -1,0 +1,19 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.Activity" table="t_activity">
+			<id name="activity_id" column="activity_id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="activity_title" length="50" type="string"></property>
+			<property name="start_time"  type="string"></property>
+			<property name="end_time"  type="string"></property>
+			<property name="activity_address" length="100" type="string"></property>
+			<property name="activity_content" length="1000" type="string"></property>
+			<property name="activity_logo" length="500" type="string"></property>
+			<property name="activity_status" length="10" type="string"></property>
+			<many-to-one name="buildings"  column="buildings_id" class="com.th.bean.Buildings" cascade="all" ></many-to-one>
+		</class>
+</hibernate-mapping>

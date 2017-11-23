@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="buildingPackage" namespace="/building" extends="basePackage">
+    	<action name="*" class="buildingAction" method="{1}">
+    		<result name="error">/error.jsp</result>
+    		<result name="list" type="json"></result>
+    		<result name="buildList">/WEB-INF/agency/BuildingDonList.jsp</result>
+    		<result name="listDon" type="json"></result>
+    		<result name="buildfind">/WEB-INF/agency/BuildingDonFindList.jsp</result>
+    		<result name="findlist" type="json"></result>
+    	</action>
+    </package>
+
+</struts>

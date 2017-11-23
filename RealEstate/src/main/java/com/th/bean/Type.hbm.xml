@@ -1,0 +1,18 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.Type" table="t_article_type">
+			<id name="type_id" column="type_id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="type_name" length="50" type="string"></property>
+			<property name="type_des" length="500"  type="string"></property>
+			<property name="type_status" length="10"  type="string"></property>
+			<set name="articlelist" table="t_article" inverse="true" cascade="all">
+				<key><column name="type_id"/></key>
+				<one-to-many class="com.th.bean.Article"></one-to-many>
+			</set>
+		</class>
+</hibernate-mapping>

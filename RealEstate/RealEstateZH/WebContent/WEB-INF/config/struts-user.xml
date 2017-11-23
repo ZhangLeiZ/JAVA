@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="userPackage" namespace="/user" extends="basePackage">
+    	<action name="*" class="userAction" method="{1}">
+    		<result name="register" >/WEB-INF/user/reAndLo.jsp</result>
+    		<result name="code" type="json">/WEB-INF/user/reAndLo.jsp</result>
+    		<result name="regSuccess" >/WEB-INF/user/reAndLo.jsp</result> 
+    		<result name="loginSuccess" >/WEB-INF/user/userIndex.jsp</result>
+    		<result name="loginFail" >/WEB-INF/user/reAndLo.jsp</result> 
+    		<result name="info" >/WEB-INF/user/userIndex.jsp</result> 
+    		<result name="psdCode" >/WEB-INF/user/modifyPswd.jsp</result>    		    
+    		<result name="modifyPsd" >/WEB-INF/user/userIndex.jsp</result>  
+    		<result name="forgetPsd" >/WEB-INF/user/reAndLo.jsp</result>
+    		         
+    		<result name="skipForgetPsd" >/WEB-INF/user/forgetPsd.jsp</result>
+    		<result name="skipUserInfo" >/WEB-INF/user/userIndex.jsp</result>
+    		<result name="skipModifyPsd" >/WEB-INF/user/modifyPswd.jsp</result>
+    		<result name="index" >/house/index.jsp</result>
+    	</action>
+    </package>
+
+</struts>

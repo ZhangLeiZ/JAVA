@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="customerPackage" namespace="/customer" extends="basePackage">
+    	<action name="*" class="customerAction" method="{1}">
+    		<result name="error">/error.jsp</result>
+    		<result name="list" type="json"></result>
+    		<result name="customerList">/WEB-INF/agency/CustomerList.jsp</result>
+    		<result name="input">/WEB-INF/agency/CustomerUpload.jsp</result>
+    		<result name="details">/WEB-INF/agency/CustomerDetails.jsp</result>
+    		<result name="page">/WEB-INF/employee/customer.jsp</result>
+    		
+    		<result name="success" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="inputName">inputStream</param>
+				<param name="bufferSize">4096</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+			</result>
+    		
+    	</action>
+    </package>
+
+</struts>

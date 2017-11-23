@@ -1,0 +1,33 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.Sale" table="t_sale">
+			<id name="sale_id" column="sale_id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="customer_id"  type="string"></property>
+			<property name="sale_time"   type="string"></property>
+			<property name="unit_price"   type="double"></property>
+			<property name="room_id" length="36" type="string"></property>
+			<property name="discount"  type="double"></property>
+			<property name="total_cost"  type="double"></property>
+			<property name="employee_id" length="36" type="string"></property>
+			<property name="created_time"  type="string"></property>
+			<property name="sale_status" length="2" type="string"></property>
+			
+		
+		<many-to-one name="customers"  column="customer_id" class="com.th.bean.Customer"  lazy="false"
+		insert="false" update="false" not-found="ignore"></many-to-one> 
+		
+		
+		<many-to-one name="rooms"  column="room_id" class="com.th.bean.Room"  lazy="false"
+		insert="false" update="false" not-found="ignore"></many-to-one> 
+		
+		<many-to-one name="employees"  column="employee_id" class="com.th.bean.Employee"  lazy="false"
+		insert="false" update="false" not-found="ignore"></many-to-one>
+		
+		
+		</class>
+</hibernate-mapping>

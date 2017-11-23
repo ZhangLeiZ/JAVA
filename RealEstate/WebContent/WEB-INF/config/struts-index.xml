@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="indexController" namespace="/index" extends="basePackage">
+    	<action name="*" class="indexControllerAction" method="{1}">
+    		<result name="index">/house/index.jsp</result>
+    		<result name="house">/house/house.jsp</result>
+    		<result name="single">/house/single-property.jsp</result>
+    		<result name="more" type="json"></result>
+    		<result name="commentList" type="json"></result>
+    		<result name="newindex">/house/property-listing.jsp</result>
+    		<result name="newacrity">/house/acritityex.jsp</result>
+    		<result name="acrity">/house/arictleex.jsp</result>
+    	</action>
+    </package>
+
+</struts>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.User" table="t_user">
+			<id name="user_id" column="user_id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="user_email" length="50" type="string"></property>
+			<property name="user_phone" length="11"  type="string"></property>
+			<property name="user_pwd" length="50"  type="string"></property>
+			<property name="user_qq" length="20" type="string"></property>
+			<property name="user_wechat" length="50" type="string"></property>
+			<property name="user_gender" length="2" type="string"></property>
+			<property name="user_birthday"  type="string"></property>
+			<property name="user_nickname" length="50" type="string"></property>
+			<property name="user_name" length="20" type="string"></property>
+			<property name="headicon" length="500" type="string"></property>
+			
+			<!-- 一对多  用户对点赞-->
+			<set name="likes" cascade="all" inverse="true">
+				<key column="user_id"/>
+				<one-to-many class="com.th.bean.Like"/>
+			</set>
+		    <!-- set存放的bean对象   关联作用的字段   对立的bean类 --> 
+		    
+		    <set name="historys" cascade="all" inverse="true">
+				<key column="user_id" />
+				<one-to-many class="com.th.bean.History"/>
+			</set> 			
+			  <set name="appointments" cascade="all" inverse="true">
+				<key column="user_id" />
+				<one-to-many class="com.th.bean.Appointment"/>
+			</set> 
+			<set name="messages" cascade="all" inverse="true">
+				<key column="user_id" />
+				<one-to-many class="com.th.bean.Message"/>  
+			</set>
+			                        
+		</class>
+</hibernate-mapping>

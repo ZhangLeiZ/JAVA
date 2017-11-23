@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="employeePackage" namespace="/employee" extends="basePackage">
+    	<action name="*" class="employeeAction" method="{1}">
+    		<result name="error">/WEB-INF/employee/login.jsp</result>
+    		<result name="add">/WEB-INF/employee/profile.jsp</result>
+    		<result name="success">/WEB-INF/employee/profile.jsp</result>
+    		<result name="login">/WEB-INF/employee/login.jsp</result>
+    		<result name="emplogin">/WEB-INF/employee/index.jsp</result>
+    		<result name="pwd">/WEB-INF/employee/employeepwd.jsp</result>
+    		<result name="update">/WEB-INF/employee/employeeUpdate.jsp</result>
+    		<result name="page" type="json"></result>
+    		<result name="pages">/WEB-INF/employee/employeepage.jsp</result>
+    	</action>
+    </package>
+
+</struts>

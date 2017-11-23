@@ -1,0 +1,53 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.Buildings" table="t_buildings">
+			<id name="buildings_id" column="buildings_id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="buildings_name" length="50" type="string"></property>
+			<property name="buildings_area"  length="50" type="string"></property>
+			<property name="buildings_address" length="100"  type="string"></property>
+			<property name="floor_area"  type="double"></property>
+			<property name="building_area"  type="double"></property>
+			<property name="house_type" length="20" type="string"></property>
+			<property name="building_type" length="20" type="string"></property>
+			<property name="longitude"  type="double"></property>
+			<property name="latitude"  type="double"></property>
+			<property name="avg_price"  type="double"></property>
+			<property name="company" length="100" type="string"></property>
+			<property name="open_date"  type="string"></property>
+			<property name="total_rooms" length="11" type="int"></property>
+			<property name="reception_address"  type="string"></property>
+			<property name="buildings_tel" type="string"></property>
+			<property name="green_ratio"  type="double"></property>
+			<property name="plot_ratio" type="double"></property>
+			<property name="property_company" type="string"></property>
+			<property name="property_fee" type="double"></property>
+			<property name="car_station" type="int"></property>
+			<property name="traffic" type="string"></property>
+			<property name="equipments" type="string"></property>
+			<property name="buildings_logo" type="string"></property>
+			<property name="buildings_intro" type="string"></property>
+			<property name="created_time" type="string"></property>
+			<property name="buildings_status" type="string"></property>
+			<property name="agency_id" type="string"></property>
+			
+			<!-- 一对多  楼盘对点赞-->
+			<set name="likes" cascade="all" inverse="true">
+				<key column="buildings_id"/>
+				<one-to-many class="com.th.bean.Like"/>
+			</set>
+			<set name="historys" cascade="all" inverse="true">
+				<key column="buildings_id" />
+				<one-to-many class="com.th.bean.History"/>
+			</set> 
+			<set name="messages" cascade="all" inverse="true">
+				<key column="buildings_id" />
+				<one-to-many class="com.th.bean.Message"/>  
+			</set> 
+			
+		</class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.th.bean.Appointment" table="t_appointment">
+			<id name="appointment_id" column="appointment_id" type="string">
+				<generator class="uuid.hex"></generator>
+			</id>
+			<property name="app_arrive_time"   type="string"></property>
+			<property name="arrive_time"  type="string"></property>
+			<property name="app_status"  type="string"></property>
+			<property name="created_time"  type="string"></property>
+			<property name="appointment_status"  type="string"></property>
+			 <many-to-one name="employee"  column="employee_id" class="com.th.bean.Employee"  
+		insert="false" update="false"></many-to-one> 
+		     <many-to-one name="user"  column="user_id" class="com.th.bean.User"   
+		insert="false" update="false"  ></many-to-one> 
+			<many-to-one name="house"  column="house_id" class="com.th.bean.House"  
+		insert="false" update="false" ></many-to-one> 
+			 
+			
+		</class>
+</hibernate-mapping>
