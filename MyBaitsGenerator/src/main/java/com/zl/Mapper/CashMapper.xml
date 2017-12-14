@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.Dao.CashMapper">
+  <resultMap id="BaseResultMap" type="com.zl.Bean.Cash">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="cash_time" jdbcType="TIMESTAMP" property="cashTime" />
+    <result column="cash_customer" jdbcType="VARCHAR" property="cashCustomer" />
+    <result column="cash_type" jdbcType="BIGINT" property="cashType" />
+    <result column="pay_type" jdbcType="BIGINT" property="payType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, money, cash_time, cash_customer, cash_type, pay_type, create_time, user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_cash
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_cash
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zl.Bean.Cash">
+    insert into t_cash (id, money, cash_time, 
+      cash_customer, cash_type, pay_type, 
+      create_time, user_id)
+    values (#{id,jdbcType=BIGINT}, #{money,jdbcType=DECIMAL}, #{cashTime,jdbcType=TIMESTAMP}, 
+      #{cashCustomer,jdbcType=VARCHAR}, #{cashType,jdbcType=BIGINT}, #{payType,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zl.Bean.Cash">
+    insert into t_cash
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="cashTime != null">
+        cash_time,
+      </if>
+      <if test="cashCustomer != null">
+        cash_customer,
+      </if>
+      <if test="cashType != null">
+        cash_type,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="cashTime != null">
+        #{cashTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cashCustomer != null">
+        #{cashCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="cashType != null">
+        #{cashType,jdbcType=BIGINT},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zl.Bean.Cash">
+    update t_cash
+    <set>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="cashTime != null">
+        cash_time = #{cashTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cashCustomer != null">
+        cash_customer = #{cashCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="cashType != null">
+        cash_type = #{cashType,jdbcType=BIGINT},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zl.Bean.Cash">
+    update t_cash
+    set money = #{money,jdbcType=DECIMAL},
+      cash_time = #{cashTime,jdbcType=TIMESTAMP},
+      cash_customer = #{cashCustomer,jdbcType=VARCHAR},
+      cash_type = #{cashType,jdbcType=BIGINT},
+      pay_type = #{payType,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
